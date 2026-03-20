@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.controle_horas.modelos.dto.ControleHorasDto;
 import com.api.controle_horas.modelos.dto.ControleHorasRequestDto;
 import com.api.controle_horas.modelos.dto.RegistrosHorasDto;
+import com.api.controle_horas.servicos.AtualizadorControleHoras;
 import com.api.controle_horas.servicos.BuscadorControleHoras;
 import com.api.controle_horas.servicos.CriadorControleHoras;
 
@@ -22,6 +24,8 @@ public class ControleHorasControle {
   BuscadorControleHoras buscador;
   @Autowired
   CriadorControleHoras criador;
+  @Autowired
+  AtualizadorControleHoras atualizador;
 
   @GetMapping("/tarefa/{tarefa_id}")
   public RegistrosHorasDto buscarPorTarefa(@PathVariable Long tarefa_id){
@@ -38,7 +42,10 @@ public class ControleHorasControle {
     criador.criar(requestDto);
   }
 
-  // @PutMapping
+  @PutMapping("/{id}")
+  public void atualizar(@PathVariable Long id, @RequestBody ControleHorasRequestDto requestDto){
+    atualizador.atualizar(id, requestDto);
+  }
 
   // @DeleteMapping
 }
