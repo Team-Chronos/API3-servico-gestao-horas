@@ -1,6 +1,7 @@
 package com.api.controle_horas.controles;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.api.controle_horas.modelos.dto.RegistrosHorasDto;
 import com.api.controle_horas.servicos.AtualizadorControleHoras;
 import com.api.controle_horas.servicos.BuscadorControleHoras;
 import com.api.controle_horas.servicos.CriadorControleHoras;
+import com.api.controle_horas.servicos.ExcluidorControleHoras;
 
 @RestController
 @RequestMapping("/registros")
@@ -26,6 +28,8 @@ public class ControleHorasControle {
   CriadorControleHoras criador;
   @Autowired
   AtualizadorControleHoras atualizador;
+  @Autowired
+  ExcluidorControleHoras excluidor;
 
   @GetMapping("/tarefa/{tarefa_id}")
   public RegistrosHorasDto buscarPorTarefa(@PathVariable Long tarefa_id){
@@ -47,5 +51,8 @@ public class ControleHorasControle {
     atualizador.atualizar(id, requestDto);
   }
 
-  // @DeleteMapping
+  @DeleteMapping("/{id}")
+  public void deletar(@PathVariable Long id){
+    excluidor.excluir(id);
+  }
 }
