@@ -1,0 +1,44 @@
+package com.api.controle_horas.controles;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.api.controle_horas.modelos.dto.ControleHorasDto;
+import com.api.controle_horas.modelos.dto.ControleHorasRequestDto;
+import com.api.controle_horas.modelos.dto.RegistrosHorasDto;
+import com.api.controle_horas.servicos.BuscadorControleHoras;
+import com.api.controle_horas.servicos.CriadorControleHoras;
+
+@RestController
+@RequestMapping("/registros")
+public class ControleHorasControle {
+  
+  @Autowired
+  BuscadorControleHoras buscador;
+  @Autowired
+  CriadorControleHoras criador;
+
+  @GetMapping("/tarefa/{tarefa_id}")
+  public RegistrosHorasDto buscarPorTarefa(@PathVariable Long tarefa_id){
+    return buscador.buscarPorTarefa(tarefa_id);
+  }
+  
+  @GetMapping("/{id}")
+  public ControleHorasDto buscarPorId(@PathVariable Long id){
+    return buscador.buscarPorId(id);
+  }
+
+  @PostMapping
+  public void criar(@RequestBody ControleHorasRequestDto requestDto){
+    criador.criar(requestDto);
+  }
+
+  // @PutMapping
+
+  // @DeleteMapping
+}
