@@ -1,6 +1,5 @@
 package com.api.controle_horas.modelos.dto;
 
-import java.time.Duration;
 import java.time.Instant;
 
 import lombok.Data;
@@ -14,5 +13,5 @@ public class ControleHorasDto {
   private Instant data_inicio;
   private Instant data_fim;
 
-  private Duration tempo;
+  private Long tempoMinutos;
 }
