@@ -18,6 +18,8 @@ import com.api.controle_horas.servicos.BuscadorControleHoras;
 import com.api.controle_horas.servicos.CriadorControleHoras;
 import com.api.controle_horas.servicos.ExcluidorControleHoras;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/registros")
 public class ControleHorasControle {
@@ -42,7 +44,7 @@ public class ControleHorasControle {
   }
 
   @PostMapping
-  public void criar(@RequestBody ControleHorasRequestDto requestDto){
+  public void criar(@RequestBody @Valid ControleHorasRequestDto requestDto){
     criador.criar(requestDto);
   }
 
