@@ -33,7 +33,7 @@ public class BuscadorControleHoras {
 
   public RegistrosHorasDto buscarPorTarefa(Long tarefa_id) {
     List<ControleHoras> controleHorases = repositorio.findByTarefaId(tarefa_id);
-    RegistrosHorasDto registrosHorasDto = ControleHorasMapper.toDto(controleHorases);
+    RegistrosHorasDto registrosHorasDto = ControleHorasMapper.toRegistroDto(controleHorases);
     Duration tempoTotal = Duration.ZERO;
     for (ControleHorasDto controleHorasDto : registrosHorasDto.getRegistros()) {
 
@@ -45,5 +45,14 @@ public class BuscadorControleHoras {
     }
     registrosHorasDto.setTempoMinutos(tempoTotal.toMinutes());
     return registrosHorasDto;
+  }
+
+  public List<ControleHorasDto> buscarTodos(){
+    List<ControleHoras> controleHorases = repositorio.findAll();
+    List<ControleHorasDto> dtos = ControleHorasMapper.toDto(controleHorases);
+    dtos.forEach(
+      dto -> calculadorTempo.aplicarTempo(dto)
+    );
+    return dtos;
   }
 }

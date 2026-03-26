@@ -27,7 +27,16 @@ public class ControleHorasMapper {
     return controleHorasDto;
   }
 
-  public static RegistrosHorasDto toDto(List<ControleHoras> controleHorases){
+  public static List<ControleHorasDto> toDto(List<ControleHoras> controleHorases){
+    List<ControleHorasDto> dtos = new ArrayList<>();
+
+    for (ControleHoras controleHoras : controleHorases){
+      dtos.add(toDto(controleHoras));
+    }
+    return dtos;
+  }
+
+  public static RegistrosHorasDto toRegistroDto(List<ControleHoras> controleHorases){
     RegistrosHorasDto registrosHorasDto = new RegistrosHorasDto();
     List<ControleHorasDto> controleHorasDtos = new ArrayList<>();
     for (ControleHoras controleHoras : controleHorases) {

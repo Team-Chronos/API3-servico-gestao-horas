@@ -1,5 +1,7 @@
 package com.api.controle_horas.controles;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +43,11 @@ public class ControleHorasControle {
   @GetMapping("/{id}")
   public ControleHorasDto buscarPorId(@PathVariable Long id){
     return buscador.buscarPorId(id);
+  }
+
+  @GetMapping
+  public List<ControleHorasDto> buscarTodos(){
+    return buscador.buscarTodos();
   }
 
   @PostMapping
