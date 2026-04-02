@@ -21,7 +21,7 @@ public class CriadorControleHoras {
 
     try {
       restTemplate.getForObject(
-        "http://localhost:8081/tarefas/" + requestDto.getTarefa_id(),
+        "http://localhost:8089/tarefas/" + requestDto.getTarefa_id(),
         String.class
       );
 
