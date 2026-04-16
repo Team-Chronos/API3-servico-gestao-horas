@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: controle-horas
+  datasource:
+    url: jdbc:mysql://136.117.188.200:3306/gsw_database
+    username: chronosapi
+    password: Bolsonaro#22
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8082
