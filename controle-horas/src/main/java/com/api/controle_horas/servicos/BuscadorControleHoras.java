@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+//import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.api.controle_horas.mappers.ControleHorasMapper;
@@ -22,7 +22,7 @@ public class BuscadorControleHoras {
   @Autowired
   CalculadorTempo calculadorTempo;
 
-  @Cacheable(value = "registro", key = "#id")
+  //@Cacheable(value = "registro", key = "#id")
   public ControleHorasDto buscarPorId(Long id) {
     ControleHoras controleHoras = repositorio.findById(id).orElseThrow(() -> new RuntimeException("Registro não encontrado"));
     ControleHorasDto controleHorasDto = ControleHorasMapper.toDto(controleHoras);
@@ -30,7 +30,7 @@ public class BuscadorControleHoras {
     return controleHorasDto;
   }
 
-  @Cacheable(value = "registros-tarefa", key = "#tarefa_id")
+  //@Cacheable(value = "registros-tarefa", key = "#tarefa_id")
   public RegistrosHorasDto buscarPorTarefa(Long tarefa_id) {
     List<ControleHoras> controleHorases = repositorio.findByTarefaId(tarefa_id);
     RegistrosHorasDto registrosHorasDto = ControleHorasMapper.toRegistroDto(controleHorases);
@@ -45,7 +45,7 @@ public class BuscadorControleHoras {
     return registrosHorasDto;
   }
 
-  @Cacheable(value = "registros-todos")
+  //@Cacheable(value = "registros-todos")
   public List<ControleHorasDto> buscarTodos() {
     List<ControleHoras> controleHorases = repositorio.findAll();
     List<ControleHorasDto> dtos = ControleHorasMapper.toDto(controleHorases);
